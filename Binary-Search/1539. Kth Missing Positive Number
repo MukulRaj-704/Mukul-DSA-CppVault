@@ -1,0 +1,42 @@
+################################################################################################################
+BETTER APPRAOCH
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int j = 0;
+        int x = *max_element(arr.begin(), arr.end());
+        vector<int> result;  
+
+        for(int i=0;i<arr.size();i++){
+            if(arr[i]<=k){
+                k++;
+            }
+            else{
+                break;
+            }
+        }
+   return k; }
+};
+####################################################################################################################
+
+BASIC APPRAOCH 
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int j = 0;
+        int x = *max_element(arr.begin(), arr.end());
+        vector<int> result;
+        for (int i = 1; i <= x; i++) {
+            if (j < arr.size() && i == arr[j]) {
+                j++;
+            } else {
+                result.push_back(i);
+            }
+        }
+        int next = x + 1;
+        while (result.size() < k) {
+            result.push_back(next++);
+        }
+        return result[k - 1];
+    }
+};
