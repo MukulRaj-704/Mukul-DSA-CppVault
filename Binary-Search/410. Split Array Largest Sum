@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int splitArray(vector<int>& nums, int k) {
+        int n= nums.size();
+        if(k>n){
+            return -1;
+        }
+        int low=*max_element(nums.begin(),nums.end());
+        int high= accumulate(nums.begin(),nums.end(),0);
+        int ans=high;
+        while(low<=high){
+            int mid=(low+high)/2;
+           if(countminsum(nums,mid)<=k){
+            ans=mid;
+            high=mid-1;
+           }
+           else{
+            low=mid+1;
+           }
+
+       }
+       return ans; 
+    }
+    
+    int countminsum(vector<int> arr, int x){
+        int currsum=0,count=1;
+        for( int i : arr){
+            if(currsum+i>x){
+            count++;
+            currsum =i;}
+            else{
+                currsum+=i;
+            }
+        }
+
+   return count; }
+};
