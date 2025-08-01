@@ -1,0 +1,42 @@
+OPTIMAL APPROACH 
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+       unordered_map<int,int>hashmap;
+       vector<int>ans;
+        for (int i = 0; i < nums.size(); ++i) {
+            int complement=target-nums[i];
+            if (hashmap.find(complement)!=hashmap.end()) {
+                return {hashmap[complement], i};
+            }
+            hashmap[nums[i]] = i;
+        }
+    return {}; } 
+};
+######################################################################################################################
+BETTER APPROACH 
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+   
+       vector<int> v=nums;
+       vector<int> ans;
+       sort(nums.begin(),nums.end());
+       int i=0; int l = nums.size()-1;
+
+       while (i<l){
+        if (nums[i]+nums[l]>target){
+            l--;
+        }else if (nums[i]+nums[l]<target){
+            i++;
+        }else {
+           int x = find(v.begin(),v.end(),nums[i])-v.begin();
+           v[x] = -1;
+           int y = find(v.begin(),v.end(),nums[l])-v.begin();
+           ans = {x,y};
+           break;
+        }
+       }
+        return ans;
+       } 
+};
