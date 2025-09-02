@@ -8,6 +8,23 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+OPTIMAL APPROACH
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode *temp1=head;
+        ListNode *temp2=head;
+        while(temp2!=NULL&& temp2->next!=NULL){
+            temp1=temp1->next;
+            temp2=temp2->next->next;
+        }
+        return temp1;
+    }
+
+};
+
+#################################################################################
+BRUTE APPROACH 
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
