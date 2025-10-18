@@ -20,3 +20,27 @@ public:
         return 1+max(lh,rh);
     }
 };
+
+BACKTRACKING 
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(root == NULL){
+            return 0;
+        }
+        int maxlen=0;
+        int count =1;
+        helper(root,count,maxlen);
+        return maxlen;
+    }
+private:
+    void helper(TreeNode* root, int &count, int &maxlen){
+        if(root==NULL) return ;
+        maxlen=max(maxlen,count);
+        count++;
+        if(root->left) helper(root->left,count,maxlen);
+        if(root->right) helper(root->right, count,maxlen);
+        count--;
+    }
+};
