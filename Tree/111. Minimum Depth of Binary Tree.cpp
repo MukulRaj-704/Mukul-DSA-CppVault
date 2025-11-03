@@ -24,3 +24,27 @@ public:
         return 1+min( minDepth(root->left),minDepth(root->right));
     }
 };
+
+BACKTRACKING 
+
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(root==nullptr) return 0;
+        int count =1;
+        int minlen =INT_MAX;
+        helper(root,minlen,count);
+        return minlen;
+    }
+    void helper(TreeNode*root, int &minlen, int &count){
+        if(root==nullptr) return ;
+        if (root->left == nullptr && root->right == nullptr) {
+            minlen = min(minlen, count);
+            return;
+        }
+        count++;
+        if(root->left) helper(root->left,minlen,count);
+        if(root->right) helper(root->right,minlen,count);
+        count--;
+    }
+};
