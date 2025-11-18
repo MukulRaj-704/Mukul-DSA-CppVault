@@ -34,6 +34,36 @@ public:
         if(lh==rh) return (1<<lh)-1;
         return 1+countNodes(root->left)+countNodes(root->right);
     }
+};
 
-
+########################
+BASIC APPROACH
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        if(root==NULL) return 0;
+        int count=0;
+        inorder(root,count);
+    return count;
+    }
+    void inorder(TreeNode* root, int &count){
+        if(root==nullptr){
+            return ;
+        }
+        count++;
+        inorder(root->left,count);
+        inorder(root->right,count);
+        
+    }
 };
