@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n= nums.size();
+        int l=0;int r=0;int count=0;
+        for(r-0;r<n;r++){
+            if(nums[r]!=nums[l]){
+                swap(nums[r],nums[l+1]);
+                l++;
+                count++;
+            }
+        }
+        nums.erase(nums.begin()+count+1, nums.end());
+        return nums.size();
+    }
+};
