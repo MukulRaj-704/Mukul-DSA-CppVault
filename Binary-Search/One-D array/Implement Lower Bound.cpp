@@ -1,6 +1,6 @@
 class Solution {
   public:
-    int upperBound(vector<int>& nums, int target) {
+    int lowerBound(vector<int>& nums, int target) {
         // code here
         int n=nums.size();
         int low=0;
@@ -8,16 +8,12 @@ class Solution {
         int ans=n;
         while(low<=high){
             int mid=low+(high-low)/2;
-            if( nums[mid]>target){
+            if( nums[mid]>=target){
                 ans=mid;
                 high=mid-1;
                 
             }
-            else {
-                
-                low=mid+1;
-                
-            }
+            else low=mid+1;
         }
         return ans;
     }
